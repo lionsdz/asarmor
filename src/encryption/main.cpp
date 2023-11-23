@@ -110,7 +110,7 @@ Napi::Value ModulePrototypeCompile(const Napi::CallbackInfo& info) {
   Napi::Function old_compile =
     addon_data->functions[FN_MODULE_PROTOTYPE__COMPILE].Value();
 
-  if (filename_str.find("app.asar") != std::string::npos) {
+  if (filename_str.find("app.asar") != std::string::npos && filename_str.find("node_modules") == std::string::npos) {
     return old_compile.Call(info.This(),
       { Napi::String::New(env, Decrypt(content.Utf8Value())), filename });
   }
