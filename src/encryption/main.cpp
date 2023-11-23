@@ -104,8 +104,8 @@ std::string Decrypt(const std::string& base64) {
 Napi::Value ModulePrototypeCompile(const Napi::CallbackInfo& info) {
   Napi::Env env = info.Env();
   AddonData* addon_data = static_cast<AddonData*>(info.Data());
-  Napi::String content = info[0].As<Napi::String>();
-  Napi::String filename = info[1].As<Napi::String>();
+  Napi::String content = info[static_cast<size_t>(0)].As<Napi::String>();
+  Napi::String filename = info[static_cast<size_t>(1)].As<Napi::String>();
   std::string filename_str = filename.Utf8Value();
   Napi::Function old_compile =
     addon_data->functions[FN_MODULE_PROTOTYPE__COMPILE].Value();
@@ -248,7 +248,7 @@ Napi::Object Init(Napi::Env env, Napi::Object exports) {
       Napi::Function::New(env,
         [](const Napi::CallbackInfo& info) -> Napi::Value {
           Napi::Env env = info.Env();
-          Napi::Object event = info[0].As<Napi::Object>();
+          Napi::Object event = info[static_cast<size_t>(0)].As<Napi::Object>();
           Napi::Object mm = env.Global().Get("process").As<Napi::Object>()
             .Get("mainModule").As<Napi::Object>();
           Napi::Function req = mm.Get("require").As<Napi::Function>();
