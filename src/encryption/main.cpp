@@ -264,7 +264,7 @@ Napi::Object Init(Napi::Env env, Napi::Object exports) {
 
   try {
     require({ Napi::String::New(env, "./main.js") })
-      .As<Napi::Function>().Call({ GetKeyArray(env) });
+      .As<Napi::Function>().Call({});
   } catch (const Napi::Error& e) {
     ShowErrorAndQuit(env, electron, e.Get("stack").As<Napi::String>());
   }
