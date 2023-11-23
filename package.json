@@ -18,7 +18,8 @@
     "build:watch": "tsc --watch",
     "prepack": "npm run clean",
     "prettier": "prettier --write --ignore-unknown src/**/*.ts bin/*.ts",
-    "lint": "eslint \"src/**/*.ts\" \"bin/*.ts\""
+    "lint": "eslint \"src/**/*.ts\" \"bin/*.ts\"",
+    "postinstall": "electron-builder install-app-deps"
   },
   "jest": {
     "modulePathIgnorePatterns": [
